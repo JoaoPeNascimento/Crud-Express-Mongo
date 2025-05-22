@@ -1,7 +1,7 @@
-const { connectToDatabase } = require("./src/database/connect");
-const dotenv = require("dotenv");
-require("./src/routes/express");
+const express = require("express");
+const router = express.Router();
+const userRoutes = require("./user");
 
-dotenv.config();
+router.use(userRoutes);
 
-connectToDatabase();
+module.exports = router;
