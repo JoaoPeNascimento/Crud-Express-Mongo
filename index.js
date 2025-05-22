@@ -1,7 +1,18 @@
 const express = require("express");
-const router = express.Router();
-const userRoutes = require("./user");
+const app = express();
+const routes = require("./src/routes");
 
-router.use(userRoutes);
+const dotenv = require("dotenv");
 
-module.exports = router;
+const connectToDatabase = require("./src/database/connect");
+
+dotenv.config();
+
+connectToDatabase();
+
+app.use(express.json());
+app.use("/", routes);
+
+const port = 8080;
+app.listen(port, () => console.log("Servidor iniciado na porta", port));
+// require("./src/routes/express");
